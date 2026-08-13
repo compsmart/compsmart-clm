@@ -1,10 +1,10 @@
 {
   "build_id": "clm-observable-v2",
-  "checked_at": "2026-08-13T18:09:19.660969Z",
+  "checked_at": "2026-08-13T18:11:01.396534Z",
   "endpoint": "https://clm.compsmart.cloud",
   "files": {
-    "deployment.json": "22b539b539000ff399948be06bbf180dae28f637ad8ddc22f9b57606d417698a",
-    "verification.json": "5f466200af99f8094b78599f92745a6e969204b687c61b1049820ad0c3fb49dc"
+    "deployment.json": "975353ece1262c9ed9c6488264ac9eb35d741a82c3c59acf02de36d4a3bcdfe2",
+    "verification.json": "70fc1e87af304d310073859add3ee9deece7eadc666df368b16fd63611e0a490"
   },
   "schema_version": "compsmart-clm-observable-evidence-manifest-v2"
 }
