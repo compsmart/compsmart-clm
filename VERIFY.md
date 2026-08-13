@@ -37,7 +37,7 @@ commitments, inspects learner-visible history, verifies isolation, then deletes
 the learner. Inputs are generated locally and are not published.
 
 The captured live run in `evidence/observable-v2/verification.json` passed all
-18 deployment checks. Its manifest covers both that result and the public
+19 deployment checks. Its manifest covers both that result and the public
 model/runtime disclosure captured from the live endpoint.
 
 Exit code `0` means all required checks passed. Exit code `1` means at least one

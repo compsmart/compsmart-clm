@@ -2,10 +2,12 @@
 
 The public preview uses separate anonymous conversation and learner tokens.
 Each conversation is retained for no longer than 24 hours. Accepted learner
-state and learner-visible history are available across fresh conversations and
-expire after 24 hours without use. The learner history stores user prompts,
-assistant replies, and learning/reload telemetry as plaintext on the instance
-so users can inspect what happened. System prompts are not included.
+state and learner-visible history are available across fresh conversations.
+Learner state expires after 24 hours without use; every individual history
+event is pruned no later than 24 hours after it was recorded. The history stores
+user prompts, assistant replies, and learning/reload telemetry as plaintext on
+the instance so users can inspect what happened. System prompts are not
+included.
 
 `/delete` deletes the current conversation credential but deliberately keeps
 the learner, learned state, and learner history for fresh-conversation

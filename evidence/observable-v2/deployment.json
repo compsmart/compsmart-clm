@@ -1,6 +1,6 @@
 {
   "build_id": "clm-observable-v2",
-  "checked_at": "2026-08-13T18:12:27.309992Z",
+  "checked_at": "2026-08-13T18:19:18.793235Z",
   "endpoint": "https://clm.compsmart.cloud",
   "legacy_migration": {
     "capsules": 14,
@@ -53,20 +53,26 @@
     },
     {
       "build_id": "clm-observable-v2",
-      "deployed_at": "2026-08-13T18:09:00.749486Z",
+      "deployed_at": "2026-08-13T18:18:35.741108Z",
       "mechanism": "qualified capsule runtime with status/history/reload UI",
       "proof": "public-v1",
       "version": "v1-observable"
     }
   ],
   "parameter_updating": false,
+  "privacy": {
+    "operational_log_bodies": false,
+    "per_event_retention_hours": 24,
+    "prompt_history": "learner-visible plaintext",
+    "system_prompts_logged": false
+  },
   "retrieval_used": true,
   "rollback_backend_retained": true,
   "runtime": {
     "gpu": {
       "name": "NVIDIA H100 NVL",
       "vram_allocated_bytes": 8044955648,
-      "vram_free_bytes": 82442190848,
+      "vram_free_bytes": 91350433792,
       "vram_total_bytes": 99951706112
     },
     "outbound_network": "disabled",
