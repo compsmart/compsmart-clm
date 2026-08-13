@@ -1,0 +1,44 @@
+{
+  "schema_version": "compsmart-clm-adapter-preregistration-v2",
+  "status": "protocol-only-before-protected-run",
+  "claim": "bounded parameter-updating continual learning in per-learner Qwen LoRA weights without retrieval",
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "adapter": {
+    "type": "LoRA",
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.0,
+    "bias": "none",
+    "targets": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0008,
+    "weight_decay": 0.0,
+    "gradient_norm": 1.0,
+    "steps_per_lesson": 60,
+    "maximum_batch_size": 16
+  },
+  "capacity": 24,
+  "protected": {
+    "seed_rule": "first 16 hex characters of SHA-256(compsmart-clm-adapter-v2:<protocol_commit>)",
+    "facts": 8,
+    "fact_paraphrases": 8,
+    "skills": 1,
+    "skill_unseen_inputs": 1,
+    "corrections": 1
+  },
+  "gates": {
+    "lesson_acceptance": 1.0,
+    "canonical_recall": 1.0,
+    "sequential_regressions": 0,
+    "heldout_generalization": 1.0,
+    "correction": 1.0,
+    "reload": 1.0,
+    "causal_and_isolation_checks": 1.0,
+    "query_weight_writes": 0
+  },
+  "query_sources": ["current system contract", "current user prompt", "session adapter tensors"],
+  "query_excludes": ["prompt history", "commitment records", "lesson text", "memory catalogue", "database", "vector index", "remote inference"]
+}
