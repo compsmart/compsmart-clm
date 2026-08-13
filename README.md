@@ -26,10 +26,12 @@ The public preview is available at `https://clm.compsmart.cloud`.
 python demo/chat.py
 ```
 
-The chat client resumes its anonymous session after `/quit`, so facts remain
-available when the command is run again. Use `/delete` to delete that session
-or `--new-session` to deliberately start a separate one. Anonymous sessions
-still expire within 24 hours.
+Every chat-client launch creates a fresh conversation session. A locally saved
+anonymous learner credential carries accepted facts and skills into the new
+session, so learned behavior remains available without resuming the old
+conversation. Use `/delete` to delete only the current conversation or
+`/forget` to delete the learner and its learned state. Anonymous learner state
+expires after 24 hours without use.
 
 ![Compsmart CLM learning a previously unknown name and recalling it in the same conversation](clm-screenshot.png)
 

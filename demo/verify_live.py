@@ -19,8 +19,8 @@ def main() -> int:
     parser.add_argument(
         "--request-interval",
         type=float,
-        default=13.0,
-        help="seconds between requests in one session (default: 13, matching preview limits)",
+        default=6.0,
+        help="seconds between requests in one session (default: 6, matching preview limits)",
     )
     args = parser.parse_args()
     nonce = secrets.token_hex(5)
@@ -41,7 +41,8 @@ def main() -> int:
         return result
 
     try:
-        client.create_session()
+        initial_session = client.create_session()
+        learner_token = initial_session["learner_token"]
         before = primary_chat(f"What is the access phrase for {project}?")
         checks.append({"name": "unknown_before_teaching", "passed": value not in before["reply"]})
         taught = primary_chat(f"Please remember: the access phrase for {project} is {value}.")
@@ -64,12 +65,19 @@ def main() -> int:
         preserved = primary_chat(f"What is the access phrase for {project}?")
         checks.append({"name": "fact_preserved", "passed": value in preserved["reply"]})
 
+        client.delete_session()
+        client.create_session(learner_token=learner_token)
+        fresh_session = primary_chat(f"What is the access phrase for {project}?")
+        checks.append(
+            {"name": "fresh_session_recall", "passed": value in fresh_session["reply"]}
+        )
+
         isolated.create_session()
         leak = isolated.chat(f"What is the access phrase for {project}?")
-        checks.append({"name": "session_isolation", "passed": value not in leak["reply"]})
-        deletion = client.delete_session()
-        checks.append({"name": "session_deleted", "passed": bool(deletion.get("deleted"))})
-        isolated.delete_session()
+        checks.append({"name": "learner_isolation", "passed": value not in leak["reply"]})
+        deletion = client.delete_learner()
+        checks.append({"name": "learner_deleted", "passed": bool(deletion.get("deleted"))})
+        isolated.delete_learner()
     except CLMError as error:
         print(json.dumps({"passed": False, "error": str(error)}, indent=2))
         return 2

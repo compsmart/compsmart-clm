@@ -3,10 +3,10 @@
 ## Model summary
 
 Compsmart CLM is a confidential language model service designed to demonstrate
-bounded learning during inference. A session may teach synthetic or personal
-facts and small text transformations, ask for exact recall, and test new
-wording or new inputs. Learned information persists for the documented session
-retention period.
+bounded learning during inference. An anonymous learner may teach synthetic or
+personal facts and small text transformations, ask for exact recall, and test
+new wording or new inputs. Accepted learning is available in fresh conversation
+sessions associated with that learner for the documented retention period.
 
 The public service is a black-box research preview. Its weights, architecture,
 prompts, runtime, training data, and internal state format are not disclosed.
@@ -19,7 +19,8 @@ prompts, runtime, training data, and internal state format are not disclosed.
 - Apply a learned skill to an unseen input.
 - Correct a previously taught fact without changing unrelated learned facts.
 - Preserve earlier tested behavior as additional lessons are introduced.
-- Keep anonymous sessions isolated.
+- Carry accepted learning into fresh sessions for the same anonymous learner.
+- Keep anonymous learners isolated from one another.
 - Abstain when the session does not supply enough information.
 
 ## Limits
@@ -34,10 +35,10 @@ prompts, runtime, training data, and internal state format are not disclosed.
 
 ## Privacy and retention
 
-Anonymous session data expires no later than 24 hours after session creation
-and may be deleted earlier through the API. Do not submit secrets, regulated
-data, credentials, or information about another person. See
-[PRIVACY.md](PRIVACY.md).
+Anonymous conversation sessions expire no later than 24 hours after creation.
+Anonymous learner state expires after 24 hours without use. Both may be deleted
+earlier through the API. Do not submit secrets, regulated data, credentials, or
+information about another person. See [PRIVACY.md](PRIVACY.md).
 
 ## Claim boundary
 

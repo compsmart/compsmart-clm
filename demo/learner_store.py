@@ -1,4 +1,4 @@
-"""Local persistence for anonymous preview session credentials."""
+"""Local persistence for an anonymous learner credential."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 
 
-def default_session_file() -> Path:
+def default_learner_file() -> Path:
     """Return a per-user state path without placing credentials in the repository."""
     if os.name == "nt" and os.environ.get("LOCALAPPDATA"):
         return Path(os.environ["LOCALAPPDATA"]) / "Compsmart" / "CLM" / "sessions.json"
@@ -26,9 +26,9 @@ def _read_store(path: Path) -> dict:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError, OSError):
-        return {"version": 1, "sessions": {}}
-    if not isinstance(payload, dict) or not isinstance(payload.get("sessions"), dict):
-        return {"version": 1, "sessions": {}}
+        return {"version": 2, "learners": {}}
+    if not isinstance(payload, dict):
+        return {"version": 2, "learners": {}}
     return payload
 
 
@@ -37,13 +37,23 @@ def _is_expired(expires_at: str) -> bool:
         expiry = datetime.fromisoformat(expires_at.replace("Z", "+00:00"))
     except (TypeError, ValueError):
         return True
-    if expiry.tzinfo is None:
-        return True
-    return expiry <= datetime.now(timezone.utc)
+    return expiry.tzinfo is None or expiry <= datetime.now(timezone.utc)
 
 
-def load_session(path: Path, base_url: str) -> dict | None:
-    session = _read_store(path)["sessions"].get(_key(base_url))
+def load_learner(path: Path, base_url: str) -> dict | None:
+    payload = _read_store(path)
+    learners = payload.get("learners", {})
+    learner = learners.get(_key(base_url)) if isinstance(learners, dict) else None
+    if (
+        isinstance(learner, dict)
+        and isinstance(learner.get("token"), str)
+        and learner["token"]
+    ):
+        return {"learner_token": learner["token"]}
+
+    # Migrate the session credential written by chat.py versions before v0.2.
+    sessions = payload.get("sessions", {})
+    session = sessions.get(_key(base_url)) if isinstance(sessions, dict) else None
     if not isinstance(session, dict):
         return None
     token = session.get("token")
@@ -52,26 +62,27 @@ def load_session(path: Path, base_url: str) -> dict | None:
         return None
     if _is_expired(expires_at):
         return None
-    return {"token": token, "expires_at": expires_at}
+    return {"source_session_token": token}
 
 
-def save_session(path: Path, base_url: str, session: dict) -> None:
-    token = session.get("token")
-    expires_at = session.get("expires_at")
-    if not isinstance(token, str) or not token or not isinstance(expires_at, str):
-        raise ValueError("session response did not contain a token and expiry")
-
+def save_learner(path: Path, base_url: str, token: str) -> None:
+    if not token:
+        raise ValueError("session response did not contain a learner token")
     payload = _read_store(path)
-    payload["version"] = 1
-    payload["sessions"][_key(base_url)] = {"token": token, "expires_at": expires_at}
-    _write_store(path, payload)
+    learners = payload.get("learners")
+    if not isinstance(learners, dict):
+        learners = {}
+    learners[_key(base_url)] = {"token": token}
+    _write_store(path, {"version": 2, "learners": learners})
 
 
-def forget_session(path: Path, base_url: str) -> None:
+def forget_learner(path: Path, base_url: str) -> None:
     payload = _read_store(path)
-    payload["sessions"].pop(_key(base_url), None)
-    if payload["sessions"]:
-        _write_store(path, payload)
+    learners = payload.get("learners", {})
+    if isinstance(learners, dict):
+        learners.pop(_key(base_url), None)
+    if learners:
+        _write_store(path, {"version": 2, "learners": learners})
         return
     try:
         path.unlink()

@@ -10,12 +10,14 @@ import threading
 import unittest
 
 from demo.clm_client import CLMClient
-from demo.session_store import load_session, save_session
+from demo.learner_store import load_learner, save_learner
 
 
 class Handler(BaseHTTPRequestHandler):
     session_creations = 0
+    session_requests = []
     chat_authorizations = []
+    delete_paths = []
 
     def log_message(self, *args):
         pass
@@ -30,11 +32,18 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         length = int(self.headers.get("Content-Length", "0"))
-        if length:
-            self.rfile.read(length)
+        payload = json.loads(self.rfile.read(length)) if length else {}
         if self.path == "/v1/sessions":
             type(self).session_creations += 1
-            self.reply(201, {"token": "test-token", "expires_at": "2099-01-01T00:00:00Z"})
+            type(self).session_requests.append(payload)
+            self.reply(
+                201,
+                {
+                    "token": f"test-session-{self.session_creations}",
+                    "learner_token": payload.get("learner_token", "test-learner"),
+                    "expires_at": "2099-01-01T00:00:00Z",
+                },
+            )
         else:
             type(self).chat_authorizations.append(self.headers.get("Authorization"))
             self.reply(200, {"reply": "remembered", "learned": True, "expires_at": "2099-01-01T00:00:00Z"})
@@ -43,6 +52,7 @@ class Handler(BaseHTTPRequestHandler):
         self.reply(200, {"status": "ok", "model": "compsmart-clm-preview"})
 
     def do_DELETE(self):
+        type(self).delete_paths.append(self.path)
         self.reply(200, {"deleted": True})
 
 
@@ -59,15 +69,19 @@ class PublicToolsTest(unittest.TestCase):
 
     def setUp(self):
         Handler.session_creations = 0
+        Handler.session_requests = []
         Handler.chat_authorizations = []
+        Handler.delete_paths = []
 
     def test_client_contract(self):
         base = f"http://127.0.0.1:{self.server.server_port}"
         client = CLMClient(base)
         self.assertEqual(client.health()["status"], "ok")
-        self.assertEqual(client.create_session()["token"], "test-token")
+        self.assertEqual(client.create_session()["token"], "test-session-1")
         self.assertTrue(client.chat("hello")["learned"])
         self.assertTrue(client.delete_session()["deleted"])
+        client.create_session(learner_token="test-learner")
+        self.assertTrue(client.delete_learner()["deleted"])
 
     def test_published_evidence_verifier(self):
         root = Path(__file__).resolve().parents[1]
@@ -81,18 +95,18 @@ class PublicToolsTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn('"passed": true', result.stdout.lower())
 
-    def test_chat_resumes_saved_session_and_delete_forgets_it(self):
+    def test_chat_starts_fresh_session_with_saved_learner(self):
         root = Path(__file__).resolve().parents[1]
         base = f"http://127.0.0.1:{self.server.server_port}"
         with tempfile.TemporaryDirectory() as temporary_directory:
-            session_file = Path(temporary_directory) / "sessions.json"
+            learner_file = Path(temporary_directory) / "sessions.json"
             command = [
                 sys.executable,
                 str(root / "demo" / "chat.py"),
                 "--base-url",
                 base,
-                "--session-file",
-                str(session_file),
+                "--learner-file",
+                str(learner_file),
             ]
 
             first = subprocess.run(
@@ -114,33 +128,64 @@ class PublicToolsTest(unittest.TestCase):
 
             self.assertEqual(first.returncode, 0, first.stdout + first.stderr)
             self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
-            self.assertEqual(Handler.session_creations, 1)
-            self.assertEqual(Handler.chat_authorizations, ["Bearer test-token"] * 2)
-            self.assertTrue(session_file.is_file())
-            self.assertIn("Resumed session", second.stdout)
+            self.assertEqual(Handler.session_creations, 2)
+            self.assertEqual(Handler.session_requests, [{}, {"learner_token": "test-learner"}])
+            self.assertEqual(
+                Handler.chat_authorizations,
+                ["Bearer test-session-1", "Bearer test-session-2"],
+            )
+            self.assertTrue(learner_file.is_file())
+            self.assertNotIn("Resumed session", second.stdout)
 
             deleted = subprocess.run(
                 command, cwd=root, input="/delete\n", text=True, capture_output=True, check=False
             )
             self.assertEqual(deleted.returncode, 0, deleted.stdout + deleted.stderr)
-            self.assertFalse(session_file.exists())
+            self.assertTrue(learner_file.exists())
 
-    def test_expired_saved_session_is_not_resumed(self):
+            forgotten = subprocess.run(
+                command, cwd=root, input="/forget\n", text=True, capture_output=True, check=False
+            )
+            self.assertEqual(forgotten.returncode, 0, forgotten.stdout + forgotten.stderr)
+            self.assertFalse(learner_file.exists())
+            self.assertEqual(
+                Handler.delete_paths,
+                ["/v1/sessions/current", "/v1/learners/current"],
+            )
+
+    def test_old_session_credential_is_migrated_to_learner(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             session_file = Path(temporary_directory) / "sessions.json"
-            save_session(
-                session_file,
-                "https://example.test",
-                {"token": "expired-token", "expires_at": "2000-01-01T00:00:00Z"},
+            session_file.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "sessions": {
+                            "https://example.test": {
+                                "token": "old-session-token",
+                                "expires_at": "2099-01-01T00:00:00Z",
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
             )
-            self.assertIsNone(load_session(session_file, "https://example.test"))
+            self.assertEqual(
+                load_learner(session_file, "https://example.test"),
+                {"source_session_token": "old-session-token"},
+            )
+            save_learner(session_file, "https://example.test", "new-learner-token")
+            self.assertEqual(
+                load_learner(session_file, "https://example.test"),
+                {"learner_token": "new-learner-token"},
+            )
 
     def test_demo_files_are_grouped(self):
         root = Path(__file__).resolve().parents[1]
         for name in (
             "chat.py",
             "clm_client.py",
-            "session_store.py",
+            "learner_store.py",
             "verify_live.py",
             "verify_evidence.py",
         ):

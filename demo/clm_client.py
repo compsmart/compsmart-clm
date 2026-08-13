@@ -59,8 +59,18 @@ class CLMClient:
     def health(self) -> dict:
         return self._request("GET", "/v1/health")
 
-    def create_session(self) -> dict:
-        result = self._request("POST", "/v1/sessions", {})
+    def create_session(
+        self,
+        *,
+        learner_token: str | None = None,
+        source_session_token: str | None = None,
+    ) -> dict:
+        payload = {}
+        if learner_token:
+            payload["learner_token"] = learner_token
+        if source_session_token:
+            payload["source_session_token"] = source_session_token
+        result = self._request("POST", "/v1/sessions", payload)
         token = result.get("token")
         if not isinstance(token, str) or not token:
             raise CLMError("service did not issue a session token")
@@ -77,5 +87,13 @@ class CLMClient:
             return {"deleted": False}
         try:
             return self._request("DELETE", "/v1/sessions/current")
+        finally:
+            self.token = None
+
+    def delete_learner(self) -> dict:
+        if self.token is None:
+            return {"deleted": False}
+        try:
+            return self._request("DELETE", "/v1/learners/current")
         finally:
             self.token = None
