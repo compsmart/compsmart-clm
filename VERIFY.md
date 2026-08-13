@@ -41,9 +41,10 @@ behavioral check failed. Exit code `2` means the endpoint could not be tested.
 python demo/chat.py
 ```
 
-Use `/delete` to delete the current session and `/quit` to exit. The client
-prints only the public service response; it does not expose internal state or
-diagnostics.
+Use `/quit` to exit while retaining the anonymous session for the next launch.
+Use `/delete` to delete the current session and its locally saved credential.
+The client prints only the public service response; it does not expose internal
+state or diagnostics.
 
 ## Interpreting results
 

@@ -11,14 +11,22 @@ DEFAULT_BASE_URL = "https://clm.compsmart.cloud"
 
 
 class CLMError(RuntimeError):
-    pass
+    def __init__(self, message: str, *, status_code: int | None = None) -> None:
+        super().__init__(message)
+        self.status_code = status_code
 
 
 class CLMClient:
-    def __init__(self, base_url: str = DEFAULT_BASE_URL, *, timeout: float = 70.0) -> None:
+    def __init__(
+        self,
+        base_url: str = DEFAULT_BASE_URL,
+        *,
+        timeout: float = 70.0,
+        token: str | None = None,
+    ) -> None:
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
-        self.token: str | None = None
+        self.token = token
 
     def _request(self, method: str, path: str, payload: dict | None = None) -> dict:
         body = None if payload is None else json.dumps(payload).encode("utf-8")
@@ -41,7 +49,7 @@ class CLMClient:
                 detail = json.load(error).get("error", "request rejected")
             except Exception:
                 detail = "request rejected"
-            raise CLMError(f"HTTP {error.code}: {detail}") from error
+            raise CLMError(f"HTTP {error.code}: {detail}", status_code=error.code) from error
         except (urllib.error.URLError, TimeoutError, OSError) as error:
             raise CLMError(f"service unavailable: {error}") from error
         if not isinstance(result, dict):
