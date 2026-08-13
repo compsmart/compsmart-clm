@@ -1,0 +1,2 @@
+# Normalize evidence bytes so SHA-256 verification is cross-platform.
+evidence/*.json text eol=lf

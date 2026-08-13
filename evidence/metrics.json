@@ -1,0 +1,46 @@
+{
+  "schema_version": "compsmart-clm-public-metrics-v1",
+  "qualification": "qualified-positive-not-full-protocol-pass",
+  "overall_checks": {
+    "passed": 103,
+    "total": 106,
+    "rate": 0.971698
+  },
+  "lesson_acquisition": {
+    "facts_accepted": 8,
+    "facts_attempted": 8,
+    "skills_accepted": 2,
+    "skills_attempted": 3,
+    "all_lessons_accepted": 10,
+    "all_lessons_attempted": 11
+  },
+  "retention": {
+    "sequential_preservation_passed": 67,
+    "sequential_preservation_total": 67,
+    "observed_regressions": 0,
+    "accepted_lessons_after_fresh_process_passed": 10,
+    "accepted_lessons_after_fresh_process_total": 10
+  },
+  "generalization": {
+    "accepted_lessons_passed": 10,
+    "accepted_lessons_total": 10,
+    "all_requested_probes_passed": 10,
+    "all_requested_probes_total": 11,
+    "all_requested_probe_rate": 0.909091
+  },
+  "other_checks": {
+    "unknown_before_teaching": true,
+    "correction_preserved_unrelated_facts": true,
+    "question_did_not_mutate_state": true,
+    "session_isolation": true,
+    "session_deletion": true,
+    "outbound_network_probe_blocked": true,
+    "fresh_process_reload_performed": true
+  },
+  "disclosed_failures": [
+    "The third requested text skill was refused rather than learned.",
+    "Its unseen-input probe consequently had no committed skill to use.",
+    "Its fresh-process probe consequently had no committed skill to reload."
+  ],
+  "interpretation": "Every accepted lesson was retained; one requested lesson was safely refused. This demonstrates bounded learning and observed non-forgetting, but is not a perfect protocol pass or evidence of universal continual learning."
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "compsmart-clm-environment-v1",
+  "accelerator": "NVIDIA GeForce RTX 3090",
+  "accelerator_memory_mib": 24576,
+  "runtime_mode": "self-contained offline inference",
+  "external_inference_service": false,
+  "external_storage_service": false,
+  "outbound_network_probe": "blocked",
+  "fresh_process_reload": true
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "compsmart-clm-evidence-manifest-v1",
+  "protocol_commit": "6286d11796f1bc90245772d4b02900ec3ac29a6f",
+  "challenge_seed": 2648927549534227763,
+  "files": {
+    "environment.json": "ed28a45448a0d717299535eab4386c9afcea67eb09ac0b0ae406defcc0b95fda",
+    "metrics.json": "b9742226d4df2dc729e3a5940c3a4b2a06b62a0b011cfd7f47fdb48761f109c4",
+    "transcript.json": "03a8519f1dffd7fe816e44c60526026d13fd672154a0d8b7f99442831ee3ebe6"
+  }
+}
