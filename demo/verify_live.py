@@ -19,8 +19,8 @@ def main() -> int:
     parser.add_argument(
         "--request-interval",
         type=float,
-        default=6.0,
-        help="seconds between requests in one session (default: 6, matching preview limits)",
+        default=0.25,
+        help="seconds between requests in one session (default: 0.25)",
     )
     args = parser.parse_args()
     nonce = secrets.token_hex(5)
@@ -41,12 +41,26 @@ def main() -> int:
         return result
 
     try:
+        model = client.model()
+        service = client.service_status()
+        checks.append({"name": "model_manifest", "passed": (
+            model.get("parameters", {}).get("total", 0) > 4_000_000_000
+            and model.get("base_files_bytes", 0) > 7_000_000_000
+            and model.get("parameter_updating") is False
+            and model.get("retrieval_used") is True
+        )})
+        checks.append({"name": "runtime_status", "passed": (
+            service.get("status") == "ok" and bool(service.get("gpu", {}).get("name"))
+        )})
         initial_session = client.create_session()
         learner_token = initial_session["learner_token"]
+        initial_state = client.session_status()["learned_state"]["sha256"]
         before = primary_chat(f"What is the access phrase for {project}?")
         checks.append({"name": "unknown_before_teaching", "passed": value not in before["reply"]})
         taught = primary_chat(f"Please remember: the access phrase for {project} is {value}.")
         checks.append({"name": "fact_accepted", "passed": bool(taught.get("learned"))})
+        learned_state = client.session_status()["learned_state"]["sha256"]
+        checks.append({"name": "learned_state_changed", "passed": learned_state != initial_state})
         exact = primary_chat(f"What is the access phrase for {project}?")
         checks.append({"name": "fact_exact_recall", "passed": value in exact["reply"]})
         paraphrase = primary_chat(f"Which phrase opens {project}?")
@@ -71,6 +85,20 @@ def main() -> int:
         checks.append(
             {"name": "fresh_session_recall", "passed": value in fresh_session["reply"]}
         )
+        reloaded = client.reload()
+        checks.append({"name": "disk_reload", "passed": (
+            bool(reloaded.get("reloaded"))
+            and reloaded.get("adapter_hash_before") == reloaded.get("adapter_hash_after")
+        )})
+        post_reload = primary_chat(f"What is the access phrase for {project}?")
+        checks.append({"name": "post_reload_recall", "passed": value in post_reload["reply"]})
+        verified = client.verify()
+        checks.append({"name": "commitment_replay", "passed": bool(verified.get("passed"))})
+        history = client.history()
+        checks.append({"name": "prompt_history", "passed": any(
+            row.get("event") == "chat" and row.get("user")
+            for row in history.get("events", [])
+        )})
 
         isolated.create_session()
         leak = isolated.chat(f"What is the access phrase for {project}?")

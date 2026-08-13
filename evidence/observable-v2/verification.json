@@ -1,0 +1,86 @@
+{
+  "build_id": "clm-observable-v2",
+  "checked_at": "2026-08-13T18:09:19.660969Z",
+  "checks": [
+    {
+      "check": "health",
+      "passed": true
+    },
+    {
+      "check": "honest frozen-base disclosure",
+      "passed": true
+    },
+    {
+      "check": "honest capsule retrieval disclosure",
+      "passed": true
+    },
+    {
+      "check": "base model size",
+      "passed": true
+    },
+    {
+      "check": "GPU telemetry",
+      "passed": true
+    },
+    {
+      "check": "version history",
+      "passed": true
+    },
+    {
+      "check": "atomic lesson accepted",
+      "passed": true
+    },
+    {
+      "check": "learned-state hash changed",
+      "passed": true
+    },
+    {
+      "check": "lesson recall",
+      "passed": true
+    },
+    {
+      "check": "query telemetry",
+      "passed": true
+    },
+    {
+      "check": "fresh-conversation persistence",
+      "passed": true
+    },
+    {
+      "check": "disk unload/reload integrity",
+      "passed": true
+    },
+    {
+      "check": "post-reload recall",
+      "passed": true
+    },
+    {
+      "check": "commitment replay",
+      "passed": true
+    },
+    {
+      "check": "session-visible prompt history",
+      "passed": true
+    },
+    {
+      "check": "reload history",
+      "passed": true
+    },
+    {
+      "check": "web UI",
+      "passed": true
+    },
+    {
+      "check": "learner deletion",
+      "passed": true
+    }
+  ],
+  "endpoint": "https://clm.compsmart.cloud",
+  "learned_state": {
+    "bytes": 599,
+    "mechanism": "capsule",
+    "revision": 1,
+    "sha256": "fb4b4ad7ba0f67f7ecc6e8690e74bc9aeb682a574af5a9f6589a3a5f6d00b35c"
+  },
+  "passed": true
+}

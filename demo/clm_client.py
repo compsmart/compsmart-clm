@@ -59,6 +59,15 @@ class CLMClient:
     def health(self) -> dict:
         return self._request("GET", "/v1/health")
 
+    def model(self) -> dict:
+        return self._request("GET", "/v1/model")
+
+    def model_history(self) -> dict:
+        return self._request("GET", "/v1/model/history")
+
+    def service_status(self) -> dict:
+        return self._request("GET", "/v1/status")
+
     def create_session(
         self,
         *,
@@ -81,6 +90,33 @@ class CLMClient:
         if self.token is None:
             self.create_session()
         return self._request("POST", "/v1/chat", {"message": message})
+
+    def session_status(self) -> dict:
+        return self._request("GET", "/v1/sessions/current")
+
+    def history(self, cursor: int = 0) -> dict:
+        return self._request("GET", f"/v1/sessions/current/history?cursor={max(0, int(cursor))}")
+
+    def verify(self) -> dict:
+        return self._request("POST", "/v1/sessions/current/verify", {})
+
+    def reload(self) -> dict:
+        return self._request("POST", "/v1/sessions/current/reload", {})
+
+    def job(self, job_id: str) -> dict:
+        return self._request("GET", f"/v1/jobs/{job_id}")
+
+    def teach_fact(self, statement: str, question: str, answer: str) -> dict:
+        return self._request("POST", "/v1/teach/facts", {
+            "statement": statement,
+            "probes": [{"question": question, "answer": answer}],
+        })
+
+    def teach_skill(self, instruction: str, examples: list[tuple[str, str]]) -> dict:
+        return self._request("POST", "/v1/teach/skills", {
+            "instruction": instruction,
+            "examples": [{"input": left, "output": right} for left, right in examples],
+        })
 
     def delete_session(self) -> dict:
         if self.token is None:

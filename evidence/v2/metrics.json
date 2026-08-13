@@ -1,0 +1,102 @@
+{
+  "checks_by_category": {
+    "abstention": {
+      "failed": 0,
+      "passed": 1,
+      "total": 1
+    },
+    "causal": {
+      "failed": 1,
+      "passed": 7,
+      "total": 8
+    },
+    "correction": {
+      "failed": 0,
+      "passed": 2,
+      "total": 2
+    },
+    "deletion": {
+      "failed": 0,
+      "passed": 1,
+      "total": 1
+    },
+    "generalization": {
+      "failed": 6,
+      "passed": 3,
+      "total": 9
+    },
+    "isolation": {
+      "failed": 0,
+      "passed": 2,
+      "total": 2
+    },
+    "learning": {
+      "failed": 1,
+      "passed": 3,
+      "total": 4
+    },
+    "no_retrieval": {
+      "failed": 0,
+      "passed": 8,
+      "total": 8
+    },
+    "preservation": {
+      "failed": 12,
+      "passed": 6,
+      "total": 18
+    },
+    "query_nonmutation": {
+      "failed": 0,
+      "passed": 4,
+      "total": 4
+    },
+    "restart": {
+      "failed": 0,
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "failed_check_names": [
+    "fact-3-accepted",
+    "fact-3-heldout-paraphrase",
+    "fact-4-heldout-paraphrase",
+    "fact-5-heldout-paraphrase",
+    "fact-6-heldout-paraphrase",
+    "fact-7-heldout-paraphrase",
+    "fact-8-heldout-paraphrase",
+    "fact-3-after-skill",
+    "fact-4-after-skill",
+    "fact-5-after-skill",
+    "fact-6-after-skill",
+    "fact-7-after-skill",
+    "fact-8-after-skill",
+    "fact-3-after-correction",
+    "fact-4-after-correction",
+    "fact-5-after-correction",
+    "fact-6-after-correction",
+    "fact-7-after-correction",
+    "fact-8-after-correction",
+    "commitments-and-logs-unavailable"
+  ],
+  "first_gate_failure": {
+    "category": "learning",
+    "name": "fact-3-accepted",
+    "observed": "preservation_gate_failed",
+    "passed": false
+  },
+  "interpretation": "The third sequential fact update failed the frozen preservation gate and was rolled back. The preregistered 100% acquisition/preservation gate therefore failed; no tuning or rerun was performed and this adapter was not deployed.",
+  "outcome": "null-result-not-deployed",
+  "overall_checks": {
+    "failed": 20,
+    "passed": 39,
+    "total": 59
+  },
+  "passed": false,
+  "schema_version": "compsmart-clm-adapter-metrics-v2",
+  "timing": {
+    "elapsed_seconds": 82.105,
+    "query_count": 29,
+    "query_latency_max_ms": 760.854,
+    "query_latency_median_ms": 499.284
+  }
+}

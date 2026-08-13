@@ -1,9 +1,10 @@
 # Compsmart CLM
 
-Compsmart CLM is a confidential, self-contained continual-learning model
-preview. It can learn selected facts and small text skills during ordinary
-inference, retain them across later interactions, and recall them through new
-wording without retraining by the tester.
+Compsmart CLM is a self-contained continual-learning model preview. The live
+runtime uses a frozen Qwen3-4B base plus private immutable fact and skill
+capsules. It can learn selected facts and small text skills during ordinary
+inference, retain them across fresh conversations and process reloads, and
+recall them through new wording.
 
 The published frozen black-box run passed 103/106 checks. It accepted eight
 facts and two of three requested text skills, passed all 67 sequential
@@ -12,15 +13,22 @@ probes for accepted lessons, and retained all 10 accepted lessons after a fresh
 process reload. The refused lesson and its two consequent failures are fully
 disclosed in [RESULTS.md](RESULTS.md).
 
-This repository intentionally contains **verification material only**. It does
-not contain model weights, executable model samples, server code, prompts,
-architecture, training material, state files, or implementation details. This
-boundary protects ongoing confidential research and prevents published samples
-from disclosing how the capability is implemented.
+The service reports the model architecture, parameter and file sizes, learned
+state hashes, update history, GPU/runtime health, and query-source boundaries.
+The capsules are selected for each query, so the service truthfully reports
+`retrieval_used: true` and `parameter_updating: false`. This is bounded durable
+learning, not global training of the Qwen weights.
+
+A separately preregistered parameter-updating LoRA candidate failed its frozen
+protected gate (39/59 checks) and was not deployed. The complete null result is
+published in [ADAPTER_RESULTS_V2.md](ADAPTER_RESULTS_V2.md).
 
 ## Try the hosted model
 
-The public preview is available at `https://clm.compsmart.cloud`.
+Open the user-friendly live lab at **[clm.compsmart.cloud](https://clm.compsmart.cloud)**.
+It includes chat, guided fact and skill lessons, learned-state telemetry,
+history, verification, and a **Reload from disk** proof that reconstructs the
+learner and demonstrates persistence.
 
 ```powershell
 python demo/chat.py
@@ -29,9 +37,16 @@ python demo/chat.py
 Every chat-client launch creates a fresh conversation session. A locally saved
 anonymous learner credential carries accepted facts and skills into the new
 session, so learned behavior remains available without resuming the old
-conversation. Use `/delete` to delete only the current conversation or
-`/forget` to delete the learner and its learned state. Anonymous learner state
-expires after 24 hours without use.
+conversation. Use `/help` for model/status/history/verify/reload commands,
+`/delete` to delete only the current conversation, or `/forget` to delete the
+learner, prompt history, and learned state. Anonymous learner data expires
+after 24 hours without use.
+
+The public JSON endpoints include `GET /v1/model`, `GET /v1/model/history`,
+`GET /v1/status`, `GET /v1/sessions/current`, session history, commitment
+verification, and disk reload. The sanitized deployment check is hash-addressed
+in [`evidence/observable-v2`](evidence/observable-v2). See
+[demo/README.md](demo/README.md).
 
 ![Compsmart CLM learning a previously unknown name and recalling it in the same conversation](clm-screenshot.png)
 

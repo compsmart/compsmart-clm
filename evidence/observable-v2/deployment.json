@@ -1,0 +1,76 @@
+{
+  "build_id": "clm-observable-v2",
+  "checked_at": "2026-08-13T18:09:19.660969Z",
+  "endpoint": "https://clm.compsmart.cloud",
+  "legacy_migration": {
+    "capsules": 14,
+    "learners": 8,
+    "source_records_deleted": false,
+    "state_hashes_valid": 8
+  },
+  "mechanism": "frozen Qwen with private immutable fact and skill capsules",
+  "model": {
+    "architecture": "Qwen3ForCausalLM",
+    "base_files_bytes": 8044982000,
+    "base_manifest": "63be94130d534c815e671bcb4d0fa59cefd1946754d441949a14548a776cfdf2",
+    "context_length": 262144,
+    "dtype": "bfloat16",
+    "excluded_from_query": [
+      "prompt logs",
+      "unselected capsules",
+      "vector store",
+      "database",
+      "remote inference"
+    ],
+    "hidden_size": 2560,
+    "layers": 36,
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "parameters": {
+      "base": 4022468096,
+      "total": 4022468096,
+      "trainable": 0
+    },
+    "qualification": "public challenge v1: 103/106 overall; 10/10 accepted lessons retained",
+    "query_inputs": [
+      "current system contract",
+      "current user prompt",
+      "selected learned capsules"
+    ],
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "weights_source": "immutable local files; network disabled"
+  },
+  "model_history": [
+    {
+      "mechanism": "frozen Qwen plus immutable capsules",
+      "proof": "public-v1",
+      "version": "v1"
+    },
+    {
+      "deployed": false,
+      "mechanism": "frozen Qwen plus trainable session LoRA",
+      "proof": "public-v2-null",
+      "version": "v2-candidate"
+    },
+    {
+      "build_id": "clm-observable-v2",
+      "deployed_at": "2026-08-13T18:09:00.749486Z",
+      "mechanism": "qualified capsule runtime with status/history/reload UI",
+      "proof": "public-v1",
+      "version": "v1-observable"
+    }
+  ],
+  "parameter_updating": false,
+  "retrieval_used": true,
+  "rollback_backend_retained": true,
+  "runtime": {
+    "gpu": {
+      "name": "NVIDIA H100 NVL",
+      "vram_allocated_bytes": 8044955648,
+      "vram_free_bytes": 82442190848,
+      "vram_total_bytes": 99951706112
+    },
+    "outbound_network": "disabled",
+    "session_limit": 64
+  },
+  "schema_version": "compsmart-clm-observable-deployment-v2"
+}

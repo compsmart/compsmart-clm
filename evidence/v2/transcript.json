@@ -1,0 +1,480 @@
+{
+  "checks": [
+    {
+      "category": "abstention",
+      "name": "unknown-before-learning",
+      "observed": "I don't know from my learned knowledge.",
+      "passed": true
+    },
+    {
+      "category": "learning",
+      "name": "fact-1-accepted",
+      "observed": "accepted",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "fact-1-adapter-mutated",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-1-after-1",
+      "observed": "quartz-133943",
+      "passed": true
+    },
+    {
+      "category": "query_nonmutation",
+      "name": "fact-1-query-readonly-after-1",
+      "passed": true
+    },
+    {
+      "category": "learning",
+      "name": "fact-2-accepted",
+      "observed": "accepted",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "fact-2-adapter-mutated",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-1-after-2",
+      "observed": "quartz-133943",
+      "passed": true
+    },
+    {
+      "category": "query_nonmutation",
+      "name": "fact-1-query-readonly-after-2",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-2-after-2",
+      "observed": "cobalt-576664",
+      "passed": true
+    },
+    {
+      "category": "query_nonmutation",
+      "name": "fact-2-query-readonly-after-2",
+      "passed": true
+    },
+    {
+      "category": "learning",
+      "name": "fact-3-accepted",
+      "observed": "preservation_gate_failed",
+      "passed": false
+    },
+    {
+      "category": "generalization",
+      "name": "fact-1-heldout-paraphrase",
+      "observed": "quartz-133943",
+      "passed": true
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-1-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-2-heldout-paraphrase",
+      "observed": "cobalt-576664",
+      "passed": true
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-2-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-3-heldout-paraphrase",
+      "observed": "quartz-394423",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-3-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-4-heldout-paraphrase",
+      "observed": "quartz-860019",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-4-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-5-heldout-paraphrase",
+      "observed": "quartz-850201",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-5-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-6-heldout-paraphrase",
+      "observed": "quartz-809525",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-6-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-7-heldout-paraphrase",
+      "observed": "quartz-125292",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-7-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "fact-8-heldout-paraphrase",
+      "observed": "quartz-412599",
+      "passed": false
+    },
+    {
+      "category": "no_retrieval",
+      "name": "fact-8-heldout-no-retrieval",
+      "passed": true
+    },
+    {
+      "category": "learning",
+      "name": "skill-accepted",
+      "observed": "accepted",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "skill-adapter-mutated",
+      "passed": true
+    },
+    {
+      "category": "generalization",
+      "name": "skill-heldout-input",
+      "observed": "AMBER-NIGHT-WATCH",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-1-after-skill",
+      "observed": "quartz-133943",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-2-after-skill",
+      "observed": "cobalt-576664",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-3-after-skill",
+      "observed": "CYGNUS-394423",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-4-after-skill",
+      "observed": "GROVE-860019",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-5-after-skill",
+      "observed": "PRAXIS-850201",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-6-after-skill",
+      "observed": "HELIX-809525",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-7-after-skill",
+      "observed": "KESTREL-125292",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-8-after-skill",
+      "observed": "IRIS-412599",
+      "passed": false
+    },
+    {
+      "category": "correction",
+      "name": "correction-accepted",
+      "observed": "accepted",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "correction-adapter-mutated",
+      "passed": true
+    },
+    {
+      "category": "correction",
+      "name": "correction-recall",
+      "observed": "ruby-638705",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-2-after-correction",
+      "observed": "cobalt-576664",
+      "passed": true
+    },
+    {
+      "category": "preservation",
+      "name": "fact-3-after-correction",
+      "observed": "CYGNUS-394423",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-4-after-correction",
+      "observed": "ruby-860017",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-5-after-correction",
+      "observed": "ruby-850707",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-6-after-correction",
+      "observed": "helix-809525",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-7-after-correction",
+      "observed": "ruby-628705",
+      "passed": false
+    },
+    {
+      "category": "preservation",
+      "name": "fact-8-after-correction",
+      "observed": "ruby-628705",
+      "passed": false
+    },
+    {
+      "category": "restart",
+      "name": "disk-reload",
+      "observed": {
+        "adapter_sha256": "83c6fe850f6e8b67ce7a4f393778f85808f9a5ef831fe53c718378ebbca39c2c",
+        "checked": 8
+      },
+      "passed": true
+    },
+    {
+      "category": "restart",
+      "name": "recall-after-reload",
+      "observed": "cobalt-576664",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "adapter-disable-removes-learning",
+      "observed": {
+        "adapter_disabled_removed_behavior": true,
+        "adapter_enabled_passed": true,
+        "disabled_hash": "13a411254a231923407092bb4972c5005ab20be6cd3cc4ec01d08583f0bbdfad",
+        "enabled_hash": "f97d4449baf25e0963a8af072cda5d4811c27dea4296795e25c5cb13c148812a"
+      },
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "commitments-and-logs-unavailable",
+      "observed": "CYGNUS-394423",
+      "passed": false
+    },
+    {
+      "category": "isolation",
+      "name": "session-isolation",
+      "observed": "I don't know from my learned knowledge.",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "base-manifest-unchanged",
+      "observed": "c0b779924f3b06a7194ceef79479ec35a15463b8d190b4238bb3a3ccb65d929e",
+      "passed": true
+    },
+    {
+      "category": "causal",
+      "name": "adapter-changed-from-initial",
+      "passed": true
+    },
+    {
+      "category": "query_nonmutation",
+      "name": "query-weight-writes",
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "category": "isolation",
+      "name": "outbound-network-denied",
+      "passed": true
+    },
+    {
+      "category": "deletion",
+      "name": "session-deletion",
+      "passed": true
+    }
+  ],
+  "generated_at": "2026-08-13T17:43:02.563011Z",
+  "learning": [
+    {
+      "accepted": true,
+      "active_commitments": 1,
+      "adapter_bytes": 66060288,
+      "adapter_hash_after": "13084202964cd86714514487ecaa2a6426bca112605d10b34d6e1cf3b9d209f9",
+      "adapter_hash_before": "461d86a86d9a9961ba23952b23ad183466dc54de6e185fa23e2dec9b69ecc725",
+      "elapsed_seconds": 9.908964,
+      "kind": "fact",
+      "training": {
+        "batch_size": 1,
+        "elapsed_seconds": 9.383,
+        "examples": 1,
+        "final_loss": 0.0,
+        "initial_loss": 4.218835,
+        "minimum_loss": 0.0,
+        "steps": 60
+      },
+      "version": 1
+    },
+    {
+      "accepted": true,
+      "active_commitments": 2,
+      "adapter_bytes": 66060288,
+      "adapter_hash_after": "1cdb676e2f482540259c75f6cf1a8658a0734e6dc2e8aa6bc692397bfbb745ac",
+      "adapter_hash_before": "13084202964cd86714514487ecaa2a6426bca112605d10b34d6e1cf3b9d209f9",
+      "elapsed_seconds": 10.912074,
+      "kind": "fact",
+      "training": {
+        "batch_size": 2,
+        "elapsed_seconds": 9.944,
+        "examples": 2,
+        "final_loss": 1e-06,
+        "initial_loss": 1.639542,
+        "minimum_loss": 1e-06,
+        "steps": 60
+      },
+      "version": 1
+    },
+    {
+      "accepted": false,
+      "active_commitments": null,
+      "adapter_bytes": null,
+      "adapter_hash_after": null,
+      "adapter_hash_before": null,
+      "elapsed_seconds": null,
+      "kind": null,
+      "training": null,
+      "version": null
+    },
+    {
+      "accepted": true,
+      "active_commitments": 3,
+      "adapter_bytes": 66060288,
+      "adapter_hash_after": "906e510435732d040daa657f8143bec151773153b410031cc4c9a869cbb035fd",
+      "adapter_hash_before": "1cdb676e2f482540259c75f6cf1a8658a0734e6dc2e8aa6bc692397bfbb745ac",
+      "elapsed_seconds": 13.590073,
+      "kind": "skill",
+      "training": {
+        "batch_size": 16,
+        "elapsed_seconds": 10.767,
+        "examples": 72,
+        "final_loss": 3e-05,
+        "initial_loss": 2.963226,
+        "minimum_loss": 2.6e-05,
+        "steps": 60
+      },
+      "version": 1
+    },
+    {
+      "accepted": true,
+      "active_commitments": 3,
+      "adapter_bytes": 66060288,
+      "adapter_hash_after": "83c6fe850f6e8b67ce7a4f393778f85808f9a5ef831fe53c718378ebbca39c2c",
+      "adapter_hash_before": "906e510435732d040daa657f8143bec151773153b410031cc4c9a869cbb035fd",
+      "elapsed_seconds": 12.555779,
+      "kind": "fact",
+      "training": {
+        "batch_size": 11,
+        "elapsed_seconds": 9.778,
+        "examples": 11,
+        "final_loss": 2e-06,
+        "initial_loss": 2.428925,
+        "minimum_loss": 2e-06,
+        "steps": 60
+      },
+      "version": 2
+    }
+  ],
+  "model": {
+    "adapter": {
+      "alpha": 16,
+      "bytes": 66060288,
+      "rank": 8,
+      "sha256": "83c6fe850f6e8b67ce7a4f393778f85808f9a5ef831fe53c718378ebbca39c2c",
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "type": "LoRA"
+    },
+    "architecture": "Qwen3ForCausalLM",
+    "base_files_bytes": 8044982000,
+    "base_manifest": "c0b779924f3b06a7194ceef79479ec35a15463b8d190b4238bb3a3ccb65d929e",
+    "context_length": 262144,
+    "dtype": "bfloat16",
+    "hidden_size": 2560,
+    "layers": 36,
+    "model": "/workspace/clm/models/clm",
+    "parameters": {
+      "base": 4022468096,
+      "total": 4038983168,
+      "trainable": 16515072
+    },
+    "retrieval_used": false,
+    "revision": "local"
+  },
+  "passed": false,
+  "protected_seed": 8321476062748125371,
+  "protocol_commit": "d4a2c2ced0f6ed93b124354f893e8639d8cbe789",
+  "schema_version": "compsmart-clm-adapter-transcript-v2",
+  "summary": {
+    "failed": 20,
+    "passed": 39,
+    "total": 59
+  }
+}

@@ -8,6 +8,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "evidence" / "manifest.json"
+ADAPTER_MANIFEST = ROOT / "evidence" / "v2" / "manifest.json"
+OBSERVABLE_MANIFEST = ROOT / "evidence" / "observable-v2" / "manifest.json"
 
 
 def sha256(path: Path) -> str:
@@ -116,7 +118,62 @@ def main() -> int:
     if errors:
         print(json.dumps({"passed": False, "errors": errors}, indent=2))
         return 1
-    print(json.dumps({"passed": True, "manifest": str(MANIFEST), "files": len(payload["files"])}, indent=2))
+    verified_files = len(payload["files"])
+    if ADAPTER_MANIFEST.is_file():
+        adapter = json.loads(ADAPTER_MANIFEST.read_text(encoding="utf-8"))
+        adapter_commit = adapter.get("protocol_commit", "")
+        adapter_seed = int(hashlib.sha256(
+            f"compsmart-clm-adapter-v2:{adapter_commit}".encode("ascii")
+        ).hexdigest()[:16], 16)
+        if adapter.get("protected_seed") != adapter_seed:
+            errors.append("adapter v2 protected seed does not match protocol commit")
+        for relative, expected in adapter.get("files", {}).items():
+            if Path(relative).is_absolute() or ".." in Path(relative).parts:
+                errors.append(f"unsafe adapter evidence path: {relative}")
+                continue
+            path = ADAPTER_MANIFEST.parent / relative
+            if not path.is_file():
+                errors.append(f"missing adapter evidence file: {relative}")
+            elif sha256(path) != expected:
+                errors.append(f"adapter evidence hash mismatch: {relative}")
+        transcript = json.loads((ADAPTER_MANIFEST.parent / "transcript.json").read_text(encoding="utf-8"))
+        checks = transcript.get("checks", [])
+        summary = {"total": len(checks), "passed": sum(bool(row.get("passed")) for row in checks),
+                   "failed": sum(not bool(row.get("passed")) for row in checks)}
+        if transcript.get("summary") != summary:
+            errors.append("adapter transcript summary is inconsistent")
+        metrics = json.loads((ADAPTER_MANIFEST.parent / "metrics.json").read_text(encoding="utf-8"))
+        if metrics.get("overall_checks") != summary or metrics.get("outcome") != "null-result-not-deployed":
+            errors.append("adapter null-result metrics are inconsistent")
+        if transcript.get("passed") is not False or adapter.get("outcome") != "null-result-not-deployed":
+            errors.append("adapter deployment gate outcome is inconsistent")
+        verified_files += len(adapter.get("files", {}))
+    if OBSERVABLE_MANIFEST.is_file():
+        observable = json.loads(OBSERVABLE_MANIFEST.read_text(encoding="utf-8"))
+        for relative, expected in observable.get("files", {}).items():
+            if Path(relative).is_absolute() or ".." in Path(relative).parts:
+                errors.append(f"unsafe observable evidence path: {relative}")
+                continue
+            path = OBSERVABLE_MANIFEST.parent / relative
+            if not path.is_file():
+                errors.append(f"missing observable evidence file: {relative}")
+            elif sha256(path) != expected:
+                errors.append(f"observable evidence hash mismatch: {relative}")
+        verification = json.loads((OBSERVABLE_MANIFEST.parent / "verification.json").read_text(encoding="utf-8"))
+        if not verification.get("passed") or not all(row.get("passed") for row in verification.get("checks", [])):
+            errors.append("observable deployment verification did not pass")
+        deployment = json.loads((OBSERVABLE_MANIFEST.parent / "deployment.json").read_text(encoding="utf-8"))
+        if (deployment.get("build_id") != observable.get("build_id")
+                or deployment.get("parameter_updating") is not False
+                or deployment.get("retrieval_used") is not True):
+            errors.append("observable deployment disclosure is inconsistent")
+        verified_files += len(observable.get("files", {}))
+    if errors:
+        print(json.dumps({"passed": False, "errors": errors}, indent=2))
+        return 1
+    print(json.dumps({"passed": True, "manifests": [str(MANIFEST), str(ADAPTER_MANIFEST),
+                                                     str(OBSERVABLE_MANIFEST)],
+                      "files": verified_files}, indent=2))
     return 0
 
 

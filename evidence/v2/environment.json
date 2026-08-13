@@ -1,0 +1,27 @@
+{
+  "external_inference_service": false,
+  "external_storage_service": false,
+  "generator_platform": "Windows-10-10.0.26200-SP0",
+  "instance": {
+    "accelerator": "NVIDIA H100 NVL",
+    "accelerator_memory_bytes": 99951706112,
+    "instance_id": 47640102,
+    "provider": "Vast.ai"
+  },
+  "outbound_network": "disabled during protected execution",
+  "runtime_mode": "self-contained protected offline inference and training",
+  "schema_version": "compsmart-clm-adapter-environment-v2",
+  "software": {
+    "cuda": "12.6",
+    "peft": "0.20.0",
+    "python": "3.11",
+    "torch": "2.7.1+cu126",
+    "transformers": "5.14.1"
+  },
+  "source_sha256": {
+    "ADAPTER_PREREGISTRATION_V2.json": "5f2a176b4a2dbeb35bd4d738c92a8cf846f548de5540863e303bb8cc35abcc7f",
+    "ADAPTER_PROTOCOL_V2.md": "0bf83f579c0715de1129669229eec9dde037ebbd44c6612d854f6a9bfa32d72b",
+    "adapter_continual.py": "d4417d63d5ea70ae75016cc8486302d94b4ee81ee3f639a8b469915c6164d40d",
+    "run_adapter_protected_v2.py": "11c007acf256ae155127e4ad005bd3bd5614035c7025b096a50dbcee6049343e"
+  }
+}
