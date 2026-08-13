@@ -1,6 +1,6 @@
 {
   "build_id": "clm-observable-v2",
-  "checked_at": "2026-08-13T18:11:01.396534Z",
+  "checked_at": "2026-08-13T18:12:27.309992Z",
   "checks": [
     {
       "check": "health",
@@ -80,7 +80,7 @@
     "bytes": 599,
     "mechanism": "capsule",
     "revision": 1,
-    "sha256": "dc46df1a03e0bbc88fb438fe1aadeef9d214fe372732518b5c1e3679b47f7cdb"
+    "sha256": "e340eb3bb83e6a436b178a49ed80a1025f856d3e646d05db0def4ae9fe978ed7"
   },
   "passed": true
 }

@@ -70,7 +70,7 @@ def print_history(value: dict) -> None:
         elif event == "learning_result":
             result = row.get("result", {})
             print(f"{when} learned> {row.get('kind')} · accepted={result.get('accepted')} · "
-                  f"{short_hash(result.get('learned_state_hash_after') or result.get('adapter_hash_after'))}")
+                  f"{short_hash(result.get('adapter_hash_after'))}")
         else:
             print(f"{when} {event}> {json.dumps(row, sort_keys=True)[:240]}")
 

@@ -1,12 +1,12 @@
 {
   "build_id": "clm-observable-v2",
-  "checked_at": "2026-08-13T18:11:01.396534Z",
+  "checked_at": "2026-08-13T18:12:27.309992Z",
   "endpoint": "https://clm.compsmart.cloud",
   "legacy_migration": {
     "capsules": 14,
     "learners": 8,
     "source_records_deleted": false,
-    "state_hashes_valid": 8
+    "state_commitments_valid": 8
   },
   "mechanism": "frozen Qwen with private immutable fact and skill capsules",
   "model": {
