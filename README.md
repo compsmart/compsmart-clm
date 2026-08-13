@@ -26,6 +26,12 @@ The public preview is available at `https://clm.compsmart.cloud`.
 python demo/chat.py
 ```
 
+![Compsmart CLM learning a previously unknown name and recalling it in the same conversation](clm-screenshot.png)
+
+The screenshot shows a fresh session first reporting that it does not know the
+user's name, then learning `Brad` from ordinary conversation and recalling it
+on the next request.
+
 Example:
 
 ```text
