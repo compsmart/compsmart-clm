@@ -12,11 +12,18 @@ permissions:
 
 jobs:
   attest:
-    if: ${{ hashFiles('evidence/manifest.json') != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/attest-build-provenance@v3
+      - name: Attest capsule challenge v1
+        uses: actions/attest-build-provenance@v3
         with:
           subject-path: evidence/manifest.json
-
+      - name: Attest adapter null result v2
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: evidence/v2/manifest.json
+      - name: Attest observable deployment v2
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: evidence/observable-v2/manifest.json
