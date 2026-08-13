@@ -5,7 +5,7 @@
 Requires Python 3.11 or newer and no third-party packages:
 
 ```powershell
-python verify_evidence.py
+python demo/verify_evidence.py
 python -m unittest discover -s tests -v
 ```
 
@@ -14,13 +14,17 @@ The verifier checks every published evidence file against
 results, and confirms that the challenge seed was derived from the frozen
 protocol commit recorded in the manifest.
 
+The current frozen run is a qualified positive result: 103/106 checks passed,
+with zero regression across 67 sequential preservation probes. See
+[RESULTS.md](RESULTS.md) for the complete interpretation and disclosed refusal.
+
 ## Live behavioral verification
 
 When `https://clm.compsmart.cloud` is active:
 
 ```powershell
-python verify_live.py
-python verify_live.py --base-url https://clm.compsmart.cloud
+python demo/verify_live.py
+python demo/verify_live.py --base-url https://clm.compsmart.cloud
 ```
 
 The live verifier creates an isolated anonymous session, checks an initially
@@ -34,7 +38,7 @@ behavioral check failed. Exit code `2` means the endpoint could not be tested.
 ## Manual conversation
 
 ```powershell
-python chat.py
+python demo/chat.py
 ```
 
 Use `/delete` to delete the current session and `/quit` to exit. The client
@@ -48,4 +52,3 @@ exact-recall check does not imply that every possible paraphrase will work.
 Likewise, a hosted demonstration cannot by itself make infrastructure claims
 mathematically unassailable; the signed isolated-run evidence is the supporting
 record for the self-contained-runtime claim.
-

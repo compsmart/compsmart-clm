@@ -45,3 +45,6 @@ Passing the public protocol is evidence for the behaviors it measures. It is
 not proof of universal continual learning and does not disclose or validate a
 particular implementation methodology.
 
+The first published frozen run is qualified rather than perfect: all accepted
+lessons were preserved, but one of three requested text skills was refused.
+See [RESULTS.md](RESULTS.md) for counts and the complete disclosed failures.

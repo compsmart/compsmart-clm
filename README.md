@@ -5,6 +5,13 @@ preview. It can learn selected facts and small text skills during ordinary
 inference, retain them across later interactions, and recall them through new
 wording without retraining by the tester.
 
+The published frozen black-box run passed 103/106 checks. It accepted eight
+facts and two of three requested text skills, passed all 67 sequential
+preservation probes with zero observed regressions, passed all 10 held-out
+probes for accepted lessons, and retained all 10 accepted lessons after a fresh
+process reload. The refused lesson and its two consequent failures are fully
+disclosed in [RESULTS.md](RESULTS.md).
+
 This repository intentionally contains **verification material only**. It does
 not contain model weights, executable model samples, server code, prompts,
 architecture, training material, state files, or implementation details. This
@@ -13,11 +20,10 @@ from disclosing how the capability is implemented.
 
 ## Try the hosted model
 
-The public preview will be available at `https://clm.compsmart.cloud` after the
-origin DNS and TLS activation described in the release status is complete.
+The public preview is available at `https://clm.compsmart.cloud`.
 
 ```powershell
-python chat.py
+python demo/chat.py
 ```
 
 Example:
@@ -34,13 +40,13 @@ model> Rowan
 Run the randomized behavioral verifier:
 
 ```powershell
-python verify_live.py
+python demo/verify_live.py
 ```
 
 Verify the published evidence and its hashes without contacting the service:
 
 ```powershell
-python verify_evidence.py
+python demo/verify_evidence.py
 ```
 
 ## What is and is not claimed
@@ -51,9 +57,9 @@ isolation, and preservation checks. It does not claim universal continual
 learning, arbitrary skill acquisition, truth verification, unlimited memory,
 or guaranteed answers to every paraphrase.
 
-See [MODEL_CARD.md](MODEL_CARD.md), [VERIFY.md](VERIFY.md), and
+See [demo/README.md](demo/README.md) for runnable examples, [RESULTS.md](RESULTS.md)
+for the evidence summary, and [VERIFY.md](VERIFY.md) plus
 [CHALLENGE_PROTOCOL.md](CHALLENGE_PROTOCOL.md) for the precise public contract.
 
 The code in this repository is licensed under Apache-2.0. That license does not
 grant access to, or rights in, the confidential hosted model or runtime.
-

@@ -1,0 +1,755 @@
+{
+  "schema_version": "compsmart-clm-evidence-v1",
+  "protocol_commit": "6286d11796f1bc90245772d4b02900ec3ac29a6f",
+  "challenge_seed": 2648927549534227763,
+  "generated_at": "2026-08-13T13:51:14.675547Z",
+  "checks": [
+    {
+      "name": "unknown-before-teaching",
+      "category": "abstention",
+      "passed": true,
+      "expected": "not taught",
+      "observed": "I don't know from my committed knowledge."
+    },
+    {
+      "name": "fact-1-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-85265846."
+    },
+    {
+      "name": "fact-1-after-lesson-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-76755258."
+    },
+    {
+      "name": "fact-1-after-lesson-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-37721230."
+    },
+    {
+      "name": "fact-1-after-lesson-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-23370313."
+    },
+    {
+      "name": "fact-1-after-lesson-4",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-4",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-4",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-lesson-4",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-44824109."
+    },
+    {
+      "name": "fact-1-after-lesson-5",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-5",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-5",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-lesson-5",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-lesson-5",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-15631222."
+    },
+    {
+      "name": "fact-1-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-lesson-6",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-40778329."
+    },
+    {
+      "name": "fact-1-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-lesson-7",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I'll remember the access phrase for Project-56300496."
+    },
+    {
+      "name": "fact-1-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-lesson-8",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "fact-1-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-paraphrase",
+      "category": "generalization",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "skill-1-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I learned that text skill."
+    },
+    {
+      "name": "skill-1-unseen",
+      "category": "generalization",
+      "passed": true,
+      "expected": "AMBER-NIGHT-WATCH",
+      "observed": "AMBER-NIGHT-WATCH"
+    },
+    {
+      "name": "fact-1-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-skill-1",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "skill-2-accepted",
+      "category": "learning",
+      "passed": true,
+      "expected": "learned",
+      "observed": "I learned that text skill."
+    },
+    {
+      "name": "skill-2-unseen",
+      "category": "generalization",
+      "passed": true,
+      "expected": "signal/east/north",
+      "observed": "signal/east/north"
+    },
+    {
+      "name": "fact-1-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-skill-2",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "skill-3-accepted",
+      "category": "learning",
+      "passed": false,
+      "expected": "learned",
+      "observed": "I could not safely learn that text skill."
+    },
+    {
+      "name": "skill-3-unseen",
+      "category": "generalization",
+      "passed": false,
+      "expected": "[quiet][bronze][star]",
+      "observed": "I don't know from my committed knowledge."
+    },
+    {
+      "name": "fact-1-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-818935",
+      "observed": "code-818935"
+    },
+    {
+      "name": "fact-2-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-skill-3",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "question-does-not-mutate",
+      "category": "safety",
+      "passed": true,
+      "expected": "unchanged",
+      "observed": "unchanged"
+    },
+    {
+      "name": "correction",
+      "category": "correction",
+      "passed": true,
+      "expected": "code-831457",
+      "observed": "code-831457"
+    },
+    {
+      "name": "fact-2-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-correction",
+      "category": "preservation",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "fact-1-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-831457",
+      "observed": "code-831457"
+    },
+    {
+      "name": "fact-2-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-479707",
+      "observed": "code-479707"
+    },
+    {
+      "name": "fact-3-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-964999",
+      "observed": "code-964999"
+    },
+    {
+      "name": "fact-4-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-392359",
+      "observed": "code-392359"
+    },
+    {
+      "name": "fact-5-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-710219",
+      "observed": "code-710219"
+    },
+    {
+      "name": "fact-6-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-772296",
+      "observed": "code-772296"
+    },
+    {
+      "name": "fact-7-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-561149",
+      "observed": "code-561149"
+    },
+    {
+      "name": "fact-8-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "code-392772",
+      "observed": "code-392772"
+    },
+    {
+      "name": "skill-1-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "AMBER-NIGHT-WATCH",
+      "observed": "AMBER-NIGHT-WATCH"
+    },
+    {
+      "name": "skill-2-after-restart",
+      "category": "restart",
+      "passed": true,
+      "expected": "signal/east/north",
+      "observed": "signal/east/north"
+    },
+    {
+      "name": "skill-3-after-restart",
+      "category": "restart",
+      "passed": false,
+      "expected": "[quiet][bronze][star]",
+      "observed": "I don't know from my committed knowledge."
+    },
+    {
+      "name": "session-isolation",
+      "category": "isolation",
+      "passed": true,
+      "expected": "not present",
+      "observed": "I don't know from my committed knowledge."
+    },
+    {
+      "name": "session-deletion",
+      "category": "deletion",
+      "passed": true,
+      "expected": "deleted",
+      "observed": "deleted"
+    },
+    {
+      "name": "outbound-network-disabled",
+      "category": "isolation",
+      "passed": true,
+      "expected": "blocked",
+      "observed": "blocked"
+    }
+  ],
+  "summary": {
+    "total": 106,
+    "passed": 103,
+    "failed": 3
+  }
+}

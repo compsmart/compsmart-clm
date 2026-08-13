@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m unittest discover -s tests -v
-      - run: python verify_evidence.py
+      - run: python demo/verify_evidence.py
       - name: Reject confidential release material
         shell: bash
         run: |
@@ -26,4 +26,12 @@ jobs:
             echo "Confidential or generated artifact detected"
             exit 1
           fi
-
+      - name: Reject private implementation and infrastructure references
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden='(caching_allocator|device_map|ptss_training|continual_model|state_hash|192\.168\.1\.124|[CD]:\\compsmart-clm-host)'
+          if git grep -IEn "$forbidden" -- ':!.github/workflows/ci.yml'; then
+            echo "Private implementation or infrastructure reference detected"
+            exit 1
+          fi

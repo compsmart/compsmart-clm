@@ -8,7 +8,7 @@ import sys
 import threading
 import unittest
 
-from clm_client import CLMClient
+from demo.clm_client import CLMClient
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -24,6 +24,9 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_POST(self):
+        length = int(self.headers.get("Content-Length", "0"))
+        if length:
+            self.rfile.read(length)
         if self.path == "/v1/sessions":
             self.reply(201, {"token": "test-token", "expires_at": "2099-01-01T00:00:00Z"})
         else:
@@ -55,18 +58,24 @@ class PublicToolsTest(unittest.TestCase):
         self.assertTrue(client.chat("hello")["learned"])
         self.assertTrue(client.delete_session()["deleted"])
 
-    def test_protocol_only_evidence_verifier(self):
+    def test_published_evidence_verifier(self):
         root = Path(__file__).resolve().parents[1]
         result = subprocess.run(
-            [sys.executable, str(root / "verify_evidence.py")],
+            [sys.executable, str(root / "demo" / "verify_evidence.py")],
             cwd=root,
             text=True,
             capture_output=True,
             check=False,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('"passed": true', result.stdout.lower())
+
+    def test_demo_files_are_grouped(self):
+        root = Path(__file__).resolve().parents[1]
+        for name in ("chat.py", "clm_client.py", "verify_live.py", "verify_evidence.py"):
+            self.assertFalse((root / name).exists())
+            self.assertTrue((root / "demo" / name).is_file())
 
 
 if __name__ == "__main__":
     unittest.main()
-
