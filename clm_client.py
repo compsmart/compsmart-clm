@@ -22,7 +22,10 @@ class CLMClient:
 
     def _request(self, method: str, path: str, payload: dict | None = None) -> dict:
         body = None if payload is None else json.dumps(payload).encode("utf-8")
-        headers = {"Accept": "application/json"}
+        headers = {
+            "Accept": "application/json",
+            "User-Agent": "Compsmart-CLM-Client/0.1 (+https://github.com/compsmart/compsmart-clm)",
+        }
         if body is not None:
             headers["Content-Type"] = "application/json"
         if self.token:
@@ -68,4 +71,3 @@ class CLMClient:
             return self._request("DELETE", "/v1/sessions/current")
         finally:
             self.token = None
-
